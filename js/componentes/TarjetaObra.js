@@ -1,7 +1,5 @@
-/* TarjetaObra.js — Tarjeta reutilizable de obra de arte */
 class TarjetaObra extends HTMLElement {
   cargarObra(obra) {
-    // Imagen
     const wrap = document.createElement('div'); wrap.className = 't-img-wrap';
     if (obra.primaryImageSmall) {
       const img = document.createElement('img');
