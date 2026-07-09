@@ -1,4 +1,3 @@
-
 class VistaExplorar {
   constructor(c) {
     this.c = c;

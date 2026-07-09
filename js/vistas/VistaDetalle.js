@@ -44,7 +44,6 @@ class VistaDetalle {
       colImg.appendChild(gal);
     }
 
-    // --- Columna info ---
     const colInfo=document.createElement('div');
     const tit=document.createElement('h1'); tit.className='det-tit'; tit.textContent=obra.title||'Sin título';
     const artNom=obra.artistDisplayName||'Artista desconocido';
