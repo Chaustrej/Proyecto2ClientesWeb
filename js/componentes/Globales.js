@@ -46,7 +46,6 @@ class PiePagina extends HTMLElement {
 }
 customElements.define('pie-pagina', PiePagina);
 
-/* --- Estado de carga --- */
 class EstadoCarga extends HTMLElement {
   connectedCallback() {
     if (this._construido) return;

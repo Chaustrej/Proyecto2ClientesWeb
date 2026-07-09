@@ -50,7 +50,7 @@ class VistaPrincipal {
       const d = document.getElementById('stat-deptos'); if(d) d.textContent = deptos.length;
       const s = document.getElementById('stat-dest');   if(s) s.textContent = dest.total.toLocaleString('es-ES');
       const t = document.getElementById('stat-total');  if(t) t.textContent = '470,000+';
-    } catch {} 
+    } catch { /* silencioso */ }
   }
 
   async _cargarGaleria(sec, spin) {
