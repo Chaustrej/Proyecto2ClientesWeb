@@ -1,4 +1,3 @@
-
 class VistaComparador {
   constructor(c) { this.c=c; this.obras={a:null,b:null}; this.panelA=null; this.panelB=null; this.tablaEl=null; }
 
@@ -58,7 +57,14 @@ class VistaComparador {
     const otraLetra=letra==='a'?'b':'a';
     const enOtro=this.obras[otraLetra]?.objectID===obra.objectID;
     const card=document.createElement('div'); card.className='mini-card'+(enOtro?' disabled':'');
-    const img=document.createElement('img'); img.className='mini-card-img'; img.src=obra.primaryImageSmall||''; img.alt='';
+    const urlImg=obra.primaryImageSmall||obra.primaryImage||'';
+    let img;
+    if(urlImg){
+      img=document.createElement('img'); img.className='mini-card-img'; img.src=urlImg; img.alt='';
+      img.addEventListener('error',()=>{ img.replaceWith(this._miniPlaceholder()); });
+    } else {
+      img=this._miniPlaceholder();
+    }
     const info=document.createElement('div');
     const tit=document.createElement('p'); tit.className='mini-card-tit'; tit.textContent=obra.title||'Sin título';
     const art=document.createElement('p'); art.className='mini-card-art'; art.textContent=obra.artistDisplayName||'—';
@@ -68,15 +74,36 @@ class VistaComparador {
     card.appendChild(img); card.appendChild(info); return card;
   }
 
+  _miniPlaceholder() {
+    const d=document.createElement('div'); d.className='mini-card-img';
+    d.style.cssText='display:flex;align-items:center;justify-content:center;font-size:1.5rem;opacity:.35;background:rgba(0,0,0,.05);';
+    d.textContent='🖼';
+    return d;
+  }
+
   _mostrarObra(panel,letra,obra) {
     panel.zona.innerHTML='';
     const d=document.createElement('div'); d.className='obra-sel';
-    const img=document.createElement('img'); img.src=obra.primaryImageSmall||obra.primaryImage||''; img.alt=obra.title||'';
+    const urlImg=obra.primaryImageSmall||obra.primaryImage||'';
+    let img;
+    if(urlImg){
+      img=document.createElement('img'); img.src=urlImg; img.alt=obra.title||'';
+      img.addEventListener('error',()=>{ img.replaceWith(this._obraSelPlaceholder()); });
+    } else {
+      img=this._obraSelPlaceholder();
+    }
     const tit=document.createElement('p'); tit.className='obra-sel-tit'; tit.textContent=obra.title||'Sin título';
     const art=document.createElement('p'); art.className='obra-sel-art'; art.textContent=obra.artistDisplayName||'—';
     const btn=document.createElement('button'); btn.className='btn btn-ghost'; btn.textContent='↩ Cambiar';
     btn.addEventListener('click',()=>{this.obras[letra]=null;this._mostrarBuscador(panel,letra);this._checkTabla();});
     d.appendChild(img); d.appendChild(tit); d.appendChild(art); d.appendChild(btn); panel.zona.appendChild(d);
+  }
+
+  _obraSelPlaceholder() {
+    const d=document.createElement('div');
+    d.style.cssText='display:flex;align-items:center;justify-content:center;height:160px;font-size:2.5rem;opacity:.3;background:rgba(0,0,0,.05);border-radius:8px;';
+    d.textContent='🖼';
+    return d;
   }
 
   _checkTabla() {
@@ -99,7 +126,6 @@ class VistaComparador {
       const b=document.createElement('span');b.className='f-val';b.textContent=tB;
       f.appendChild(l);f.appendChild(a);f.appendChild(b);t.appendChild(f);
     });
- 
     const aA=oA.objectEndDate||oA.objectBeginDate, aB=oB.objectEndDate||oB.objectBeginDate;
     if(aA&&aB){
       const d=document.createElement('div');d.className='diff-anios';
