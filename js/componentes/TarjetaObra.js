@@ -7,8 +7,6 @@ class TarjetaObra extends HTMLElement {
       img.addEventListener('error', () => { wrap.innerHTML = ''; wrap.appendChild(this._placeholder()); });
       wrap.appendChild(img);
     } else { wrap.appendChild(this._placeholder()); }
-
-    // Info
     const info = document.createElement('div'); info.className = 't-info';
     const tit  = document.createElement('p');   tit.className  = 't-titulo'; tit.textContent = obra.title || 'Sin título';
     const art  = document.createElement('p');   art.className  = 't-artista'; art.textContent = obra.artistDisplayName || 'Artista desconocido';
