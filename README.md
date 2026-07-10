@@ -6,8 +6,8 @@ Aplicación web que consume la **Open Access API** del Metropolitan Museum of Ar
 | Integrante | Responsabilidades |
 |---|---|
 | **Juan Chaustre** | api.js, globales.js, vistaexplorador.js, vistacomparador.js, vistaDetalle.js|
-| **Nestor Rincon** |tarjetadeobra.js,vistaprincipal.js,vistaDepartamentos.js,app.js|
-| **Ambos** | estilos.css, README.md |
+| **Nestor Rincon** |Index.html,tarjetadeobra.js,vistaprincipal.js,vistaDepartamentos.js,app.js|
+| **Ambos** |estilos.css, README.md |
 
 ## Ejecutar
 ⚠️ **No abrir `index.html` con doble clic.** El API del museo bloquea peticiones hechas desde el origen `file://`. Hay que servir el proyecto con un servidor local:
